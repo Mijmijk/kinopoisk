@@ -1,0 +1,44 @@
+{% load static %}
+<header>
+	<nav class="navbar navbar-expand-lg bg-body-tertiary">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#"><img src="{% static '' %}" alt="" /></a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-1 my-0">
+				<li class="nav-item">
+					<a class="nav-link py-1" href="{% url 'catalog' %}">Catalog</a>
+				  </li>
+				{% if request.user.is_authenticated %}
+				{% if request.user.avatar %}
+				<li class="nav-item " style="">
+					<a class="nav-link py-1" href="{% url 'profile' %}"><img src="{{ request.user.avatar.url }}" class width="20" /></a>
+				  </li>
+				{% else %}
+				<li class="nav-item" style="filter: invert(1);">
+					<a class="nav-link py-1" href="{% url 'profile' %}"><img src="{% static 'Core/img/user.png' %}" class width="20" /></a>
+				  </li>
+				{% endif %}
+				<li class="nav-item">
+				  <a class="nav-link py-1" href="{% url 'orders' %}">Orders</a>
+				</li>
+				<li class="nav-item d-flex" style="filter: invert(1);">
+					<a class="nav-link py-1" href="{% url 'signout' %}"><img src="{% static 'Core/img/exit.png' %}" class width="20" /></a>
+				</li>
+				{% else %}
+				<li class="nav-item" style="filter: invert(1);">
+				<li class="nav-item">
+					<a class=	"nav-link border border-opacity-10 rounded py-1" href="{% url 'signin' %}">Sign In</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link border border-opacity-10 rounded py-1" href="{% url 'signup' %}">Sign Up</a>
+				</li>
+				{% endif %}
+				<li>
+					<img class="btnChangeTheme" width="26" src="{% static 'Core/img/moon.png' %}" alt="">
+				</li>
+			</ul>
+		  </div>
+		</div>
+	  </nav>
+</header>

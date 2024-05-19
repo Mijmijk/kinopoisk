@@ -1,0 +1,18 @@
+{% extends 'Core/base.html' %}
+{% load static %}
+{% block title %}
+регистрация
+{% endblock %}	
+{% block content %}
+  <div>
+    <form method="POST" class="d-flex flex-column gap-2 mt-2 mx-auto" style="max-width: 400px " action="">
+      {% csrf_token %}
+      <input type="text" name="username" class="form-control" placeholder="имя пользователя" />
+      <input type="text" name="email" class="form-control" placeholder="email" />
+      <input type="text" name="password" class="form-control" placeholder="пароль" />
+      <input type="text" name="repeat_password" class="form-control" placeholder="повторить пароль" />
+      <button type="submit" class="btn btn-secondary">Подтвердить</button>
+	  <span class=" text-danger fw-bold">{{ error }}</span>
+    </form>
+  </div>
+{% endblock %}
